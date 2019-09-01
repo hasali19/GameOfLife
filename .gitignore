@@ -1,0 +1,5 @@
+# CMake build output
+build/
+
+# VSCode files
+.vscode/
