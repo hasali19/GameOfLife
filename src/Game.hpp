@@ -14,7 +14,7 @@ public:
     Game(const std::string& title, unsigned int width, unsigned int height);
     ~Game();
 
-    void Run();
+    void run();
 
 private:
     void update(sf::Time delta);

@@ -12,7 +12,7 @@ Game::~Game()
 {
 }
 
-void Game::Run()
+void Game::run()
 {
     sf::Clock clock;
 
