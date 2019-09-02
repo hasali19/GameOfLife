@@ -1,6 +1,10 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <string>
+
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Time.hpp>
 
 #include "Grid.hpp"
 
@@ -11,6 +15,10 @@ public:
     ~Game();
 
     void Run();
+
+private:
+    void update(sf::Time delta);
+    void draw(sf::RenderTarget& target) const;
 
 private:
     sf::RenderWindow m_Window;

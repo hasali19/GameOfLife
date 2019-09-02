@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <SFML/Graphics.hpp>
+
 Game::Game(const std::string& title, unsigned int width, unsigned int height)
     : m_Window(sf::VideoMode(width, height), title),
       m_Grid(height / 16, width / 16, sf::Vector2f(16, 16))
@@ -12,6 +14,8 @@ Game::~Game()
 
 void Game::Run()
 {
+    sf::Clock clock;
+
     m_Grid.randomise();
 
     while (m_Window.isOpen())
@@ -27,9 +31,29 @@ void Game::Run()
         }
 
         m_Window.clear(sf::Color::Black);
-        m_Window.draw(m_Grid);
+        draw(m_Window);
         m_Window.display();
 
+        sf::Time delta = clock.getElapsedTime();
+        clock.restart();
+        update(delta);
+    }
+}
+
+void Game::update(sf::Time delta)
+{
+    static sf::Time elapsed;
+
+    elapsed += delta;
+
+    if (elapsed.asMilliseconds() >= 200)
+    {
+        elapsed = sf::Time::Zero;
         m_Grid = m_Grid.next();
     }
+}
+
+void Game::draw(sf::RenderTarget& target) const
+{
+    target.draw(m_Grid);
 }
