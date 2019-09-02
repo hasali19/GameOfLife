@@ -3,3 +3,6 @@ build/
 
 # VSCode files
 .vscode/
+
+# Visual Studio files
+.vs/
